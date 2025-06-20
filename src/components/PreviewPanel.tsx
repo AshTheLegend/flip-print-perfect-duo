@@ -13,8 +13,8 @@ const PreviewPanel: React.FC<PreviewPanelProps> = ({ frontImage, backImage, conf
   const totalPages = config.copies * 2;
 
   return (
-    <Card className="border-pink-200 bg-white">
-      <CardHeader className="bg-pink-50">
+    <Card className="border-gray-200 bg-white">
+      <CardHeader className="bg-gray-50">
         <CardTitle className="text-lg font-semibold text-black">
           Print Preview
         </CardTitle>
@@ -35,29 +35,44 @@ const PreviewPanel: React.FC<PreviewPanelProps> = ({ frontImage, backImage, conf
           </div>
         </div>
 
-        {/* Margin Preview with actual front image only */}
+        {/* Front Page Preview with margins */}
         {frontImage && (
           <div className="border-t pt-4">
-            <h4 className="font-medium text-black mb-3">Front Page with Margins Preview</h4>
-            <div className="relative bg-white border-2 border-gray-300 w-full h-48 rounded shadow-sm overflow-hidden">
-              <div 
-                className="absolute border border-pink-400 overflow-hidden flex items-center justify-center"
-                style={{
-                  top: `${(config.margins.top / 50) * 100}%`,
-                  right: `${(config.margins.right / 50) * 100}%`,
-                  bottom: `${(config.margins.bottom / 50) * 100}%`,
-                  left: `${(config.margins.left / 50) * 100}%`
-                }}
-              >
-                <img
-                  src={frontImage}
-                  alt="Front page preview with margins"
-                  className="max-w-full max-h-full object-contain"
-                />
-              </div>
+            <h4 className="font-medium text-black mb-3">Front Page Preview</h4>
+            <div className="relative bg-gray-100 border-2 border-gray-300 w-full h-48 rounded shadow-sm overflow-hidden">
+              {config.fitToPrintableArea ? (
+                <div className="w-full h-full p-4 bg-white border-4 border-gray-200">
+                  <div className="w-full h-full flex items-center justify-center overflow-hidden">
+                    <img
+                      src={frontImage}
+                      alt="Front page preview"
+                      className="max-w-full max-h-full object-contain"
+                    />
+                  </div>
+                </div>
+              ) : (
+                <div 
+                  className="absolute overflow-hidden flex items-center justify-center"
+                  style={{
+                    top: `${(config.margins.top / 50) * 100}%`,
+                    right: `${(config.margins.right / 50) * 100}%`,
+                    bottom: `${(config.margins.bottom / 50) * 100}%`,
+                    left: `${(config.margins.left / 50) * 100}%`
+                  }}
+                >
+                  <img
+                    src={frontImage}
+                    alt="Front page preview with custom margins"
+                    className="max-w-full max-h-full object-contain"
+                  />
+                </div>
+              )}
             </div>
             <p className="text-xs text-gray-600 mt-2">
-              Margins: T{config.margins.top} R{config.margins.right} B{config.margins.bottom} L{config.margins.left}mm
+              {config.fitToPrintableArea 
+                ? "White borders show printable area margins (10mm all sides)"
+                : `Custom margins: T${config.margins.top} R${config.margins.right} B${config.margins.bottom} L${config.margins.left}mm`
+              }
             </p>
           </div>
         )}

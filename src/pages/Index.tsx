@@ -12,6 +12,7 @@ import { useToast } from '@/hooks/use-toast';
 export interface PrintConfig {
   paperSize: 'A4' | 'A3';
   copies: number;
+  fitToPrintableArea: boolean;
   margins: {
     top: number;
     right: number;
@@ -26,6 +27,7 @@ const Index = () => {
   const [config, setConfig] = useState<PrintConfig>({
     paperSize: 'A4',
     copies: 1,
+    fitToPrintableArea: true,
     margins: {
       top: 10,
       right: 10,
@@ -73,7 +75,7 @@ const Index = () => {
   const isReadyToGenerate = frontImage && backImage;
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-pink-50 to-white">
+    <div className="min-h-screen bg-white">
       <div className="container mx-auto px-4 py-8">
         <div className="text-center mb-8">
           <div className="flex items-center justify-center gap-4 mb-4">
@@ -86,7 +88,7 @@ const Index = () => {
               PAPION Double Sided Print Prep
             </h1>
           </div>
-          <p className="text-lg text-gray-700">
+          <p className="text-lg text-gray-600">
             Prepare your images for perfect double-sided printing
           </p>
         </div>
@@ -124,7 +126,7 @@ const Index = () => {
             <Button
               onClick={handleGeneratePDF}
               disabled={!isReadyToGenerate}
-              className="h-12 px-12 text-lg font-semibold bg-pink-600 hover:bg-pink-700 text-white"
+              className="h-12 px-12 text-lg font-semibold bg-black hover:bg-gray-800 text-white"
               size="lg"
             >
               <Download className="mr-2 h-5 w-5" />

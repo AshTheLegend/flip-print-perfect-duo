@@ -22,8 +22,8 @@ const PrintSettings: React.FC<PrintSettingsProps> = ({ config, onConfigChange })
   };
 
   return (
-    <Card className="border-pink-200 bg-white">
-      <CardHeader className="bg-pink-50">
+    <Card className="border-gray-200 bg-white">
+      <CardHeader className="bg-gray-50">
         <CardTitle className="text-lg font-semibold text-black">
           Print Settings
         </CardTitle>
@@ -63,8 +63,8 @@ const PrintSettings: React.FC<PrintSettingsProps> = ({ config, onConfigChange })
         </div>
 
         <div className="bg-pink-50 border border-pink-200 rounded-lg p-4">
-          <h4 className="font-medium text-pink-900 mb-2">Print Instructions</h4>
-          <ul className="text-sm text-pink-800 space-y-1">
+          <h4 className="font-medium text-black mb-2">Print Instructions</h4>
+          <ul className="text-sm text-gray-700 space-y-1">
             <li>• Odd pages (1, 3, 5...) contain your front image</li>
             <li>• Even pages (2, 4, 6...) contain your back image</li>
             <li>• Print odd pages first, then flip and print even pages</li>
