@@ -76,50 +76,55 @@ const Index = () => {
     <div className="min-h-screen bg-gradient-to-br from-pink-50 to-white">
       <div className="container mx-auto px-4 py-8">
         <div className="text-center mb-8">
-          <h1 className="text-4xl font-bold text-black mb-2">
-            PAPION Double Sided Print Prep
-          </h1>
+          <div className="flex items-center justify-center gap-4 mb-4">
+            <img 
+              src="/lovable-uploads/06f7170d-306a-49a8-b61a-521a55c0adb8.png" 
+              alt="PAPION Logo" 
+              className="w-12 h-12"
+            />
+            <h1 className="text-4xl font-bold text-black">
+              PAPION Double Sided Print Prep
+            </h1>
+          </div>
           <p className="text-lg text-gray-700">
             Prepare your images for perfect double-sided printing
           </p>
         </div>
 
-        <div className="grid lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
+        <div className="max-w-7xl mx-auto space-y-8">
           {/* Image Upload Section */}
-          <div className="lg:col-span-2 space-y-6">
-            <div className="grid md:grid-cols-2 gap-6">
-              <ImageUpload
-                title="Front Page"
-                image={frontImage}
-                onImageChange={setFrontImage}
-                placeholder="Upload front page image"
-              />
-              <ImageUpload
-                title="Back Page"
-                image={backImage}
-                onImageChange={setBackImage}
-                placeholder="Upload back page image"
-              />
-            </div>
-
-            <div className="grid md:grid-cols-2 gap-6">
-              <PrintSettings config={config} onConfigChange={setConfig} />
-              <MarginSettings config={config} onConfigChange={setConfig} />
-            </div>
+          <div className="grid md:grid-cols-2 gap-6">
+            <ImageUpload
+              title="Front Page"
+              image={frontImage}
+              onImageChange={setFrontImage}
+              placeholder="Upload front page image"
+            />
+            <ImageUpload
+              title="Back Page"
+              image={backImage}
+              onImageChange={setBackImage}
+              placeholder="Upload back page image"
+            />
           </div>
 
-          {/* Preview Section */}
-          <div className="lg:col-span-1">
+          {/* Settings Section */}
+          <div className="grid lg:grid-cols-3 gap-6">
+            <PrintSettings config={config} onConfigChange={setConfig} />
+            <MarginSettings config={config} onConfigChange={setConfig} />
             <PreviewPanel
               frontImage={frontImage}
               backImage={backImage}
               config={config}
             />
-            
+          </div>
+
+          {/* Generate PDF Button Section */}
+          <div className="flex justify-center pt-6">
             <Button
               onClick={handleGeneratePDF}
               disabled={!isReadyToGenerate}
-              className="w-full mt-6 h-12 text-lg font-semibold bg-fuchsia-600 hover:bg-fuchsia-700 text-white"
+              className="h-12 px-12 text-lg font-semibold bg-pink-600 hover:bg-pink-700 text-white"
               size="lg"
             >
               <Download className="mr-2 h-5 w-5" />

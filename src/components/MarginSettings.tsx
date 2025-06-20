@@ -22,7 +22,7 @@ const MarginSettings: React.FC<MarginSettingsProps> = ({ config, onConfigChange 
   };
 
   return (
-    <Card className="border-pink-200">
+    <Card className="border-pink-200 bg-white">
       <CardHeader className="bg-pink-50">
         <CardTitle className="text-lg font-semibold text-black">
           Margin Settings
@@ -91,11 +91,11 @@ const MarginSettings: React.FC<MarginSettingsProps> = ({ config, onConfigChange 
           </div>
         </div>
 
-        <div className="bg-fuchsia-50 border border-fuchsia-200 rounded-lg p-4">
-          <h4 className="font-medium text-fuchsia-900 mb-2">Margin Preview</h4>
+        <div className="bg-pink-50 border border-pink-200 rounded-lg p-4">
+          <h4 className="font-medium text-pink-900 mb-2">Margin Preview</h4>
           <div className="relative bg-white border-2 border-gray-300 w-full h-32 rounded">
             <div 
-              className="absolute bg-fuchsia-100 border border-fuchsia-300 rounded"
+              className="absolute bg-pink-100 border border-pink-300 rounded"
               style={{
                 top: `${(config.margins.top / 50) * 100}%`,
                 right: `${(config.margins.right / 50) * 100}%`,
@@ -103,12 +103,12 @@ const MarginSettings: React.FC<MarginSettingsProps> = ({ config, onConfigChange 
                 left: `${(config.margins.left / 50) * 100}%`
               }}
             >
-              <div className="w-full h-full flex items-center justify-center text-xs text-fuchsia-700 font-medium">
+              <div className="w-full h-full flex items-center justify-center text-xs text-pink-700 font-medium">
                 Image Area
               </div>
             </div>
           </div>
-          <p className="text-sm text-fuchsia-800 mt-2">
+          <p className="text-sm text-pink-800 mt-2">
             Preview shows how margins affect image placement on paper
           </p>
         </div>

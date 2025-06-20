@@ -13,7 +13,7 @@ const PreviewPanel: React.FC<PreviewPanelProps> = ({ frontImage, backImage, conf
   const totalPages = config.copies * 2;
 
   return (
-    <Card className="sticky top-4 border-pink-200">
+    <Card className="border-pink-200 bg-white">
       <CardHeader className="bg-pink-50">
         <CardTitle className="text-lg font-semibold text-black">
           Print Preview
@@ -35,13 +35,13 @@ const PreviewPanel: React.FC<PreviewPanelProps> = ({ frontImage, backImage, conf
           </div>
         </div>
 
-        {/* Margin Preview with actual image */}
+        {/* Margin Preview with actual front image only */}
         {frontImage && (
           <div className="border-t pt-4">
-            <h4 className="font-medium text-black mb-3">Image with Margins Preview</h4>
-            <div className="relative bg-white border-2 border-gray-300 w-full h-40 rounded shadow-sm overflow-hidden">
+            <h4 className="font-medium text-black mb-3">Front Page with Margins Preview</h4>
+            <div className="relative bg-white border-2 border-gray-300 w-full h-48 rounded shadow-sm overflow-hidden">
               <div 
-                className="absolute border border-fuchsia-300 overflow-hidden"
+                className="absolute border border-pink-400 overflow-hidden flex items-center justify-center"
                 style={{
                   top: `${(config.margins.top / 50) * 100}%`,
                   right: `${(config.margins.right / 50) * 100}%`,
@@ -51,8 +51,8 @@ const PreviewPanel: React.FC<PreviewPanelProps> = ({ frontImage, backImage, conf
               >
                 <img
                   src={frontImage}
-                  alt="Preview with margins"
-                  className="w-full h-full object-cover"
+                  alt="Front page preview with margins"
+                  className="max-w-full max-h-full object-contain"
                 />
               </div>
             </div>
@@ -73,7 +73,7 @@ const PreviewPanel: React.FC<PreviewPanelProps> = ({ frontImage, backImage, conf
 
               return (
                 <div key={pageNumber} className="flex items-center gap-3 p-2 bg-pink-50 rounded-lg">
-                  <div className="flex-shrink-0 w-8 h-8 bg-fuchsia-100 rounded-full flex items-center justify-center text-xs font-medium text-fuchsia-800">
+                  <div className="flex-shrink-0 w-8 h-8 bg-pink-200 rounded-full flex items-center justify-center text-xs font-medium text-pink-800">
                     {pageNumber}
                   </div>
                   <div className="flex-shrink-0 w-12 h-16 bg-white border rounded shadow-sm overflow-hidden">
@@ -103,8 +103,8 @@ const PreviewPanel: React.FC<PreviewPanelProps> = ({ frontImage, backImage, conf
         </div>
 
         {(!frontImage || !backImage) && (
-          <div className="bg-fuchsia-50 border border-fuchsia-200 rounded-lg p-3">
-            <p className="text-sm text-fuchsia-800">
+          <div className="bg-pink-50 border border-pink-200 rounded-lg p-3">
+            <p className="text-sm text-pink-800">
               Upload both front and back images to generate your PDF
             </p>
           </div>
