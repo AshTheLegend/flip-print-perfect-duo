@@ -54,18 +54,18 @@ const ImageUpload: React.FC<ImageUploadProps> = ({
   };
 
   return (
-    <Card className="h-full">
-      <CardHeader>
-        <CardTitle className="text-lg font-semibold text-gray-800">
+    <Card className="h-full border-pink-200">
+      <CardHeader className="bg-pink-50">
+        <CardTitle className="text-lg font-semibold text-black">
           {title}
         </CardTitle>
       </CardHeader>
-      <CardContent>
+      <CardContent className="pt-6">
         <div
           className={`relative border-2 border-dashed rounded-lg p-6 transition-all duration-200 ${
             image
-              ? 'border-green-300 bg-green-50'
-              : 'border-gray-300 bg-gray-50 hover:border-blue-400 hover:bg-blue-50'
+              ? 'border-fuchsia-300 bg-fuchsia-50'
+              : 'border-pink-300 bg-pink-50 hover:border-fuchsia-400 hover:bg-fuchsia-50'
           }`}
           onDrop={handleDrop}
           onDragOver={handleDragOver}
@@ -88,16 +88,16 @@ const ImageUpload: React.FC<ImageUploadProps> = ({
             </div>
           ) : (
             <div className="text-center">
-              <Upload className="mx-auto h-12 w-12 text-gray-400 mb-4" />
-              <p className="text-sm text-gray-600 mb-4">{placeholder}</p>
+              <Upload className="mx-auto h-12 w-12 text-fuchsia-400 mb-4" />
+              <p className="text-sm text-black mb-4">{placeholder}</p>
               <Button
                 onClick={() => fileInputRef.current?.click()}
                 variant="outline"
-                className="mb-2"
+                className="mb-2 border-fuchsia-300 text-fuchsia-700 hover:bg-fuchsia-50"
               >
                 Choose File
               </Button>
-              <p className="text-xs text-gray-500">or drag and drop here</p>
+              <p className="text-xs text-gray-600">or drag and drop here</p>
             </div>
           )}
           <input

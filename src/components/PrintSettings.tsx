@@ -22,16 +22,16 @@ const PrintSettings: React.FC<PrintSettingsProps> = ({ config, onConfigChange })
   };
 
   return (
-    <Card>
-      <CardHeader>
-        <CardTitle className="text-lg font-semibold text-gray-800">
+    <Card className="border-pink-200">
+      <CardHeader className="bg-pink-50">
+        <CardTitle className="text-lg font-semibold text-black">
           Print Settings
         </CardTitle>
       </CardHeader>
-      <CardContent className="space-y-6">
-        <div className="grid md:grid-cols-2 gap-6">
+      <CardContent className="space-y-6 pt-6">
+        <div className="space-y-4">
           <div>
-            <Label htmlFor="paper-size" className="text-sm font-medium text-gray-700">
+            <Label htmlFor="paper-size" className="text-sm font-medium text-black">
               Paper Size
             </Label>
             <Select value={config.paperSize} onValueChange={handlePaperSizeChange}>
@@ -46,7 +46,7 @@ const PrintSettings: React.FC<PrintSettingsProps> = ({ config, onConfigChange })
           </div>
 
           <div>
-            <Label htmlFor="copies" className="text-sm font-medium text-gray-700">
+            <Label htmlFor="copies" className="text-sm font-medium text-black">
               Number of Copies
             </Label>
             <Input
@@ -62,9 +62,9 @@ const PrintSettings: React.FC<PrintSettingsProps> = ({ config, onConfigChange })
           </div>
         </div>
 
-        <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
-          <h4 className="font-medium text-blue-900 mb-2">Print Instructions</h4>
-          <ul className="text-sm text-blue-800 space-y-1">
+        <div className="bg-fuchsia-50 border border-fuchsia-200 rounded-lg p-4">
+          <h4 className="font-medium text-fuchsia-900 mb-2">Print Instructions</h4>
+          <ul className="text-sm text-fuchsia-800 space-y-1">
             <li>• Odd pages (1, 3, 5...) contain your front image</li>
             <li>• Even pages (2, 4, 6...) contain your back image</li>
             <li>• Print odd pages first, then flip and print even pages</li>

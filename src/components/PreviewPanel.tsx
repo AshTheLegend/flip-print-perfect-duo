@@ -13,14 +13,14 @@ const PreviewPanel: React.FC<PreviewPanelProps> = ({ frontImage, backImage, conf
   const totalPages = config.copies * 2;
 
   return (
-    <Card className="sticky top-4">
-      <CardHeader>
-        <CardTitle className="text-lg font-semibold text-gray-800">
+    <Card className="sticky top-4 border-pink-200">
+      <CardHeader className="bg-pink-50">
+        <CardTitle className="text-lg font-semibold text-black">
           Print Preview
         </CardTitle>
       </CardHeader>
-      <CardContent className="space-y-4">
-        <div className="text-sm text-gray-600 space-y-1">
+      <CardContent className="space-y-4 pt-6">
+        <div className="text-sm text-black space-y-1">
           <div className="flex justify-between">
             <span>Paper Size:</span>
             <span className="font-medium">{config.paperSize}</span>
@@ -35,8 +35,35 @@ const PreviewPanel: React.FC<PreviewPanelProps> = ({ frontImage, backImage, conf
           </div>
         </div>
 
+        {/* Margin Preview with actual image */}
+        {frontImage && (
+          <div className="border-t pt-4">
+            <h4 className="font-medium text-black mb-3">Image with Margins Preview</h4>
+            <div className="relative bg-white border-2 border-gray-300 w-full h-40 rounded shadow-sm overflow-hidden">
+              <div 
+                className="absolute border border-fuchsia-300 overflow-hidden"
+                style={{
+                  top: `${(config.margins.top / 50) * 100}%`,
+                  right: `${(config.margins.right / 50) * 100}%`,
+                  bottom: `${(config.margins.bottom / 50) * 100}%`,
+                  left: `${(config.margins.left / 50) * 100}%`
+                }}
+              >
+                <img
+                  src={frontImage}
+                  alt="Preview with margins"
+                  className="w-full h-full object-cover"
+                />
+              </div>
+            </div>
+            <p className="text-xs text-gray-600 mt-2">
+              Margins: T{config.margins.top} R{config.margins.right} B{config.margins.bottom} L{config.margins.left}mm
+            </p>
+          </div>
+        )}
+
         <div className="border-t pt-4">
-          <h4 className="font-medium text-gray-800 mb-3">Page Layout</h4>
+          <h4 className="font-medium text-black mb-3">Page Layout</h4>
           <div className="space-y-3 max-h-64 overflow-y-auto">
             {Array.from({ length: Math.min(6, totalPages) }, (_, i) => {
               const pageNumber = i + 1;
@@ -45,8 +72,8 @@ const PreviewPanel: React.FC<PreviewPanelProps> = ({ frontImage, backImage, conf
               const pageType = isOdd ? 'Front' : 'Back';
 
               return (
-                <div key={pageNumber} className="flex items-center gap-3 p-2 bg-gray-50 rounded-lg">
-                  <div className="flex-shrink-0 w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center text-xs font-medium text-blue-800">
+                <div key={pageNumber} className="flex items-center gap-3 p-2 bg-pink-50 rounded-lg">
+                  <div className="flex-shrink-0 w-8 h-8 bg-fuchsia-100 rounded-full flex items-center justify-center text-xs font-medium text-fuchsia-800">
                     {pageNumber}
                   </div>
                   <div className="flex-shrink-0 w-12 h-16 bg-white border rounded shadow-sm overflow-hidden">
@@ -59,8 +86,8 @@ const PreviewPanel: React.FC<PreviewPanelProps> = ({ frontImage, backImage, conf
                     )}
                   </div>
                   <div className="flex-1 min-w-0">
-                    <p className="text-sm font-medium text-gray-900">{pageType}</p>
-                    <p className="text-xs text-gray-500 truncate">
+                    <p className="text-sm font-medium text-black">{pageType}</p>
+                    <p className="text-xs text-gray-600 truncate">
                       {currentImage ? 'Image loaded' : 'No image'}
                     </p>
                   </div>
@@ -76,8 +103,8 @@ const PreviewPanel: React.FC<PreviewPanelProps> = ({ frontImage, backImage, conf
         </div>
 
         {(!frontImage || !backImage) && (
-          <div className="bg-amber-50 border border-amber-200 rounded-lg p-3">
-            <p className="text-sm text-amber-800">
+          <div className="bg-fuchsia-50 border border-fuchsia-200 rounded-lg p-3">
+            <p className="text-sm text-fuchsia-800">
               Upload both front and back images to generate your PDF
             </p>
           </div>

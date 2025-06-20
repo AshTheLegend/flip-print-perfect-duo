@@ -17,7 +17,7 @@ export const generatePrintPDF = async (
   backImage: string,
   config: PrintConfig
 ): Promise<Blob> => {
-  const { paperSize, copies } = config;
+  const { paperSize, copies, margins } = config;
   
   // Paper dimensions in mm
   const paperDimensions = {
@@ -38,28 +38,31 @@ export const generatePrintPDF = async (
   const frontImg = await loadImage(frontImage);
   const backImg = await loadImage(backImage);
 
-  // Calculate image dimensions to fit page while maintaining aspect ratio
+  // Calculate image dimensions to fit page while maintaining aspect ratio and respecting margins
   const getImageDimensions = (img: HTMLImageElement) => {
+    const availableWidth = dimensions.width - margins.left - margins.right;
+    const availableHeight = dimensions.height - margins.top - margins.bottom;
+    
     const imgAspectRatio = img.width / img.height;
-    const pageAspectRatio = dimensions.width / dimensions.height;
+    const availableAspectRatio = availableWidth / availableHeight;
     
     let width, height;
     
-    if (imgAspectRatio > pageAspectRatio) {
-      // Image is wider relative to page
-      width = dimensions.width - 20; // 10mm margin on each side
+    if (imgAspectRatio > availableAspectRatio) {
+      // Image is wider relative to available space
+      width = availableWidth;
       height = width / imgAspectRatio;
     } else {
-      // Image is taller relative to page
-      height = dimensions.height - 20; // 10mm margin on top and bottom
+      // Image is taller relative to available space
+      height = availableHeight;
       width = height * imgAspectRatio;
     }
     
     return {
       width,
       height,
-      x: (dimensions.width - width) / 2,
-      y: (dimensions.height - height) / 2
+      x: margins.left + (availableWidth - width) / 2,
+      y: margins.top + (availableHeight - height) / 2
     };
   };
 
